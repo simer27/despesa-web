@@ -1,0 +1,35 @@
+.container-home{
+  margin: 30px 80px 30px 120px;
+}
+
+.title-home{
+  display: flex;
+  justify-content: space-between;
+}
+
+.box-despesas{
+  border: 1px solid var(--color-medium-gray);
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 30px;
+}
+
+.style-btn{
+  border-radius: 5px;
+  width: 70px;
+}
+
+.img-btn{
+  width: auto; /* Tamanho inicial da imagem */
+  height: auto; /* Mantém a proporção da imagem */
+  border-radius: 5px;
+}
+
+.color-indice{
+  background-color: var(--color-medium-gray);
+  font-size: var(--fsize-xl);
+}
+
+.color-grid{
+  background-color: var(--color-gray);
+}
