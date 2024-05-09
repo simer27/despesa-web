@@ -1,0 +1,22 @@
+.navbar{
+  background-color: var(--color-gray);
+  height: 100px;
+  width: 100%;
+  padding-left: 80px;
+  padding-top: 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.navbar img{
+  padding-top: 1px;
+  height: 80px;
+  padding-left: 0px;
+}
+
+.dashboard{
+  text-align: right;
+  margin-right: 30px;
+  font-size: var(--fsize-xl);
+}
