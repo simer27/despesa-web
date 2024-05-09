@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate , useParams} from "react-router-dom";
 import Sidebar from '../../components/sidebar/sidebar';
 import Navbar from '../../components/navbar/navbar.jsx';
 import "./cad-despesa.css";
@@ -9,7 +9,7 @@ import { format } from 'date-fns';
 
 const Despesa = () => {
 
-
+const{idUrl} = useParams();
   const navigate = useNavigate();
   const[valor, setValor] = useState(0);
   const[descricao, setDescricao] = useState("");
@@ -37,7 +37,10 @@ const Despesa = () => {
 
       <div className="container-despesa">
         <div className="box-despesa-cad">
-          <h1>Nova Despesa</h1>
+
+        {
+          idUrl == "add" ?  <h1>Nova Despesa</h1> : <h1>Editar Despesa</h1>
+        }
 
           <div className="input-group">
             <p>Valor</p>

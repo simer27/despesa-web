@@ -25,6 +25,11 @@ import { useNavigate } from "react-router-dom";
     setDespesas(dados);
   }
 
+  const OpenDespesa = (id) => {
+    navigate("/despesa/" + id);
+    console.log(id);
+  }
+
   useEffect(() => {
     ListarDespesa();
   }, []);
@@ -36,7 +41,7 @@ import { useNavigate } from "react-router-dom";
     <div className="container-home">
       <div className="title-home">
         <h1>Despesas</h1>
-        <button onClick={() => navigate("/despesa")} className="btn btn-green">Adicionar Despesa</button>
+        <button onClick={() => navigate("/despesa/add")} className="btn btn-green">Adicionar Despesa</button>
       </div>
 
       <div className="box-despesas">
@@ -61,8 +66,8 @@ import { useNavigate } from "react-router-dom";
               <td className="text-right">R$ {desp.valor.toLocaleString('pt-BR',{minimumFractionDigits: 2})}</td>
               <td className="text-right">{desp.data}</td>
               <td className="text-right">
-                <button className="btn btn-blue">
-                  <img className="icon-sm" src={icons.editar} />
+                <button onClick={() => OpenDespesa(desp.id)} className="btn btn-blue">
+                  <img  className="icon-sm" src={icons.editar} />
                 </button>
                 <button className="btn btn-red ml-10">
                   <img className="icon-sm" src={icons.deletar} />
