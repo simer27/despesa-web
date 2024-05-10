@@ -2,7 +2,7 @@ import { useNavigate , useParams} from "react-router-dom";
 import Sidebar from '../../components/sidebar/sidebar';
 import Navbar from '../../components/navbar/navbar.jsx';
 import "./cad-despesa.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { format } from 'date-fns';
@@ -25,6 +25,20 @@ const{idUrl} = useParams();
     console.log(categoria);
     console.log(format(selectedDate, 'dd-MM-yyyy'));
   }
+  const GetDadosDespesa = (id) => {
+    setValor(150);
+    setDescricao("Mistura da semana");
+    setCategoria("Mercado");
+    const selectedDate = new Date("4/5/2023");
+    setSelectedDate(format(selectedDate, 'dd-MM-yyyy'));
+    console.log(selectedDate);
+  }
+
+  useEffect(() => {
+    if (idUrl != "add") {
+      GetDadosDespesa(idUrl);
+    }
+  }, []);
 
   const onChange = (date) => {
     setSelectedDate(date);
@@ -39,26 +53,26 @@ const{idUrl} = useParams();
         <div className="box-despesa-cad">
 
         {
-          idUrl == "add" ?  <h1>Nova Despesa</h1> : <h1>Editar Despesa</h1>
+          idUrl === "add" ?  <h1>Nova Despesa</h1> : <h1>Editar Despesa</h1>
         }
 
           <div className="input-group">
             <p>Valor</p>
             <input type="text" className="input input-lg w100" id="valor"
-            onChange={(e) => setValor(e.target.value)} />
+            value={valor} onChange={(e) => setValor(e.target.value)} />
           </div>
 
           <div className="input-group">
             <p>Descrição</p>
             <input type="text" className="input w100" id="descricao"
-              onChange={(e) => setDescricao(e.target.value)}
+              value={descricao} onChange={(e) => setDescricao(e.target.value)}
             />
           </div>
 
           <div className="input-group">
             <p>Categoria</p>
             <select id="categoria" className="input w100" defaultValue=""
-            onChange={(e) => setCategoria(e.target.value)}>
+            value={categoria} onChange={(e) => setCategoria(e.target.value)}>
             <option value="" disabled hidden>Selecione</option>
               <option value="Carro">Carro</option>
               <option value="Casa">Casa</option>

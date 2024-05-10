@@ -19,16 +19,35 @@ import { useNavigate } from "react-router-dom";
       {id: "006", icon: <img src={icons.mercado} />, categoria: "Mercado", descricao: "Compra do Mês", valor: 920 , data: "05-05-2024" },
     ];
 
+    let dadosFiltrados = [
+      {id: "005", icon: <img src={icons.viagem} />, categoria: "Viagem", descricao: "Férias em Caldas Novas", valor: 2900 , data: "20-04-2024" },
+    ];
+
   const [despesas, setDespesas] = useState([]);
+  const [total, setTotal] = useState(0);
 
-  const ListarDespesa = () => {
-    setDespesas(dados);
-  }
+  const ListarDespesa = (filtro) => {
+    if (filtro)
+        dados = dadosFiltrados;
 
-  const OpenDespesa = (id) => {
+      let soma = 0;
+      for(var i=0; i < dados.length; i++){
+        soma = soma + dados[i].valor;
+      }
+      setTotal(soma);
+      setDespesas(dados);
+    }
+  
+
+  const EditarDespesa = (id) => {
     navigate("/despesa/" + id);
     console.log(id);
   }
+    const deletarDespesa = (id) => {
+      
+      alert("Despesa Deletada " + id + ", deletada com sucesso!");
+    }
+  
 
   useEffect(() => {
     ListarDespesa();
@@ -36,7 +55,10 @@ import { useNavigate } from "react-router-dom";
 
   return <>
   <Sidebar />
-  <Navbar />
+  <Navbar onClickSearch={ListarDespesa} 
+          total={total}
+          search={true}
+          />
 
     <div className="container-home">
       <div className="title-home">
@@ -66,10 +88,10 @@ import { useNavigate } from "react-router-dom";
               <td className="text-right">R$ {desp.valor.toLocaleString('pt-BR',{minimumFractionDigits: 2})}</td>
               <td className="text-right">{desp.data}</td>
               <td className="text-right">
-                <button onClick={() => OpenDespesa(desp.id)} className="btn btn-blue">
+                <button onClick={() => EditarDespesa(desp.id)} className="btn btn-blue">
                   <img  className="icon-sm" src={icons.editar} />
                 </button>
-                <button className="btn btn-red ml-10">
+                <button onClick={() => deletarDespesa(desp.id)} className="btn btn-red ml-10">
                   <img className="icon-sm" src={icons.deletar} />
                 </button>
               </td>

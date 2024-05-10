@@ -18,5 +18,13 @@
 .dashboard{
   text-align: right;
   margin-right: 30px;
-  font-size: var(--fsize-xl);
+}
+
+.indice-texto{
+  font-size: var(--fsize-md);
+}
+
+.indice-total{
+  font-size: var(--fsize-xxl);
+  font-weight: bold;
 }
